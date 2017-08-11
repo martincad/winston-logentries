@@ -2,12 +2,12 @@ winston = require 'winston'
 logentries = require 'logentries'
 
 class Logentries extends winston.Transport
-  constructor: ({token, level, levels = winston.levels, secure = true}) ->
+  constructor: ({token, level, levels = winston.levels, secure = true, timestamp = true}) ->
     super
 
     @name = 'logentries'
     @level = level or 'info'
-    @logentries = new logentries.logger {token, levels, secure}
+    @logentries = new logentries.logger {token, levels, secure, timestamp}
     @logentries.level @level
 
   log: (level, msg, meta, callback) ->
